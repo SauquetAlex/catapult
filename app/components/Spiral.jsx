@@ -30,10 +30,12 @@ export default function SpiralBackground() {
     renderer.setPixelRatio(window.devicePixelRatio);
     containerRef.current.appendChild(renderer.domElement);
 
-    camera.position.set(0, 0, 120);
-    camera.lookAt(0, 0, 0);
+    camera.position.set(40, 0, 120);
+    camera.lookAt(40, 0, 0);
 
     const spiralGroup = new THREE.Group();
+    spiralGroup.position.x = 40;
+    
     const numSpirals = 12;
     const maxRadius = 90;
 
@@ -46,7 +48,6 @@ export default function SpiralBackground() {
       for (let j = 0; j <= segments; j++) {
         const t = j / segments;
 
-        // log spiral that expands outward
         const angle = t * Math.PI * 6 + angleOffset;
         const radius = t * maxRadius * (0.3 + spiralIndex * 0.7);
 
@@ -58,14 +59,16 @@ export default function SpiralBackground() {
       }
 
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
-
-      const brightness = 0.5 + spiralIndex * 0.5;
+      
+      // Bright green with subtle variation
+      const brightness = 0.5 + spiralIndex * 0.3;
       const color = new THREE.Color(0x6be5be).multiplyScalar(brightness);
 
       const material = new THREE.LineBasicMaterial({
         color: color,
         transparent: true,
-        opacity: 0.8 - spiralIndex * 0.3,
+        opacity: 0.35 - spiralIndex * 0.12, // Increased opacity
+        linewidth: 2,
       });
 
       const line = new THREE.Line(geometry, material);
@@ -93,13 +96,14 @@ export default function SpiralBackground() {
 
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
 
-      const brightness = 0.3 + bandIndex * 0.3;
+      const brightness = 0.4 + bandIndex * 0.4;
       const color = new THREE.Color(0x6be5be).multiplyScalar(brightness);
 
       const material = new THREE.LineBasicMaterial({
         color: color,
         transparent: true,
-        opacity: 0.2,
+        opacity: 0.22, // Increased opacity
+        linewidth: 2,
       });
 
       const line = new THREE.Line(geometry, material);
@@ -124,7 +128,7 @@ export default function SpiralBackground() {
     document.addEventListener('mousemove', handleMouseMove);
 
     function updateCameraPosition() {
-      spiralGroup.position.x += (mouseX * 5 - spiralGroup.position.x) * 0.05;
+      spiralGroup.position.x = 40 + (mouseX * 5 - spiralGroup.position.x + 40) * 0.05;
       spiralGroup.position.y += (mouseY * 5 - spiralGroup.position.y) * 0.05;
     }
 
@@ -133,7 +137,7 @@ export default function SpiralBackground() {
       animationFrameRef.current = requestAnimationFrame(animate);
       time += 0.005;
 
-      spiralGroup.rotation.z = time * 0.4;
+      spiralGroup.rotation.z = time * 0.6;
 
       const scale = 1 + Math.sin(time * 0.8) * 0.03;
       spiralGroup.scale.set(scale, scale, 1);

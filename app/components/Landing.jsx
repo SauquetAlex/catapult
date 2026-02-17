@@ -1,16 +1,17 @@
 import Spiral from "./Spiral";
+import Image from "next/image";
 
 export default function Landing() {
     return (
-        <section id="home" className="relative min-h-screen flex items-center justify-start overflow-hidden">
+        <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
             <Spiral />
-            <div className="relative z-10 text-left pl-10 md:pl-24">
-                <h1 className="text-7xl md:text-7.5xl font-extrabold tracking-tight text-white font-[family-name:var(--font-unbounded)]">
-                    CATAPULTHACKS
-                </h1>
-                <p className="mt-4 text-2xl md:text-3xl font-semibold text-[#6be5be] tracking-tight">
-                    @ WALC | April 3rd - 5th, 2026
-                </p>
+            <div className="relative flex flex-col items-center -mt-20 z-10 text-center">
+                <Image 
+                    src="/CATAPULT.svg"
+                    alt="Catapult"
+                    width={800}
+                    height={800}
+                />
             </div>
         </section>
     )
