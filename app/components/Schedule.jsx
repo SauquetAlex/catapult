@@ -2,6 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react';
 
+// Grid color: rgba(0, 215, 185, ...) — deep saturated teal, more vibrant than the minty #6be5be
+// Card accents stay as #6be5be — reads as a lighter highlight on top, no clash
+
 function SpiralLines({ mouseRef }) {
   const canvasRef = useRef(null);
 
@@ -24,7 +27,6 @@ function SpiralLines({ mouseRef }) {
     const distortRadius = 400;
     const distortStrength = 70;
 
-    // Distortion helper: push point away from mouse
     function distort(px, py) {
       const dx = px - mouse.x;
       const dy = py - mouse.y;
@@ -42,7 +44,6 @@ function SpiralLines({ mouseRef }) {
       ctx.clearRect(0, 0, width, height);
       time += 0.003;
 
-      // Read live mouse position from shared ref
       const mx = mouseRef.current.x;
       const my = mouseRef.current.y;
       const mActive = mouseRef.current.active;
@@ -55,12 +56,12 @@ function SpiralLines({ mouseRef }) {
       const cols = Math.ceil(width / gridSpacing) + 1;
       const rows = Math.ceil(height / gridSpacing) + 1;
 
-      // Vertical grid lines — distorted
+      // Vertical grid lines — vibrant deep teal, boosted opacity
       for (let c = 0; c < cols; c++) {
         const x = c * gridSpacing;
         const distFromCenter = Math.abs(x - width / 2) / (width / 2);
         const pulse = Math.sin(time * 1.2 + c * 0.3) * 0.5 + 0.5;
-        const opacity = (0.1 + pulse * 0.07) * (1 - distFromCenter * 0.5);
+        const opacity = (0.18 + pulse * 0.12) * (1 - distFromCenter * 0.5);
 
         ctx.beginPath();
         const step = 8;
@@ -69,17 +70,17 @@ function SpiralLines({ mouseRef }) {
           if (py === 0) ctx.moveTo(p.x, p.y);
           else ctx.lineTo(p.x, p.y);
         }
-        ctx.strokeStyle = `rgba(107, 229, 190, ${opacity})`;
-        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = `rgba(0, 215, 185, ${opacity})`;
+        ctx.lineWidth = 0.6;
         ctx.stroke();
       }
 
-      // Horizontal grid lines — distorted
+      // Horizontal grid lines — vibrant deep teal
       for (let r = 0; r < rows; r++) {
         const y = r * gridSpacing;
         const distFromCenter = Math.abs(y - height / 2) / (height / 2);
         const pulse = Math.sin(time * 1.5 + r * 0.25) * 0.5 + 0.5;
-        const opacity = (0.1 + pulse * 0.07) * (1 - distFromCenter * 0.4);
+        const opacity = (0.18 + pulse * 0.12) * (1 - distFromCenter * 0.4);
 
         ctx.beginPath();
         const step = 8;
@@ -88,33 +89,32 @@ function SpiralLines({ mouseRef }) {
           if (px === 0) ctx.moveTo(p.x, p.y);
           else ctx.lineTo(p.x, p.y);
         }
-        ctx.strokeStyle = `rgba(107, 229, 190, ${opacity})`;
-        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = `rgba(0, 215, 185, ${opacity})`;
+        ctx.lineWidth = 0.6;
         ctx.stroke();
       }
 
       // ── CURSOR GLOW ──
       if (mouse.active) {
         const glowGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, distortRadius);
-        glowGrad.addColorStop(0, 'rgba(107, 229, 190, 0.06)');
-        glowGrad.addColorStop(0.5, 'rgba(107, 229, 190, 0.02)');
-        glowGrad.addColorStop(1, 'rgba(107, 229, 190, 0)');
+        glowGrad.addColorStop(0, 'rgba(0, 215, 185, 0.10)');
+        glowGrad.addColorStop(0.5, 'rgba(0, 215, 185, 0.04)');
+        glowGrad.addColorStop(1, 'rgba(0, 215, 185, 0)');
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, distortRadius, 0, Math.PI * 2);
         ctx.fillStyle = glowGrad;
         ctx.fill();
       }
 
-      // ── SCANNING LINES (sharp horizontal sweeps) ──
+      // ── SCANNING LINES ──
       const scanCount = 3;
       for (let s = 0; s < scanCount; s++) {
         const scanY = ((time * 80 + s * (height / scanCount)) % (height + 40)) - 20;
-        const scanOpacity = 0.07;
+        const scanOpacity = 0.10;
         const grad = ctx.createLinearGradient(0, scanY - 1, 0, scanY + 1);
-        grad.addColorStop(0, `rgba(107, 229, 190, 0)`);
-        grad.addColorStop(0.5, `rgba(107, 229, 190, ${scanOpacity})`);
-        grad.addColorStop(1, `rgba(107, 229, 190, 0)`);
-
+        grad.addColorStop(0, `rgba(0, 215, 185, 0)`);
+        grad.addColorStop(0.5, `rgba(0, 215, 185, ${scanOpacity})`);
+        grad.addColorStop(1, `rgba(0, 215, 185, 0)`);
         ctx.fillStyle = grad;
         ctx.fillRect(0, scanY - 15, width, 30);
       }
@@ -124,7 +124,7 @@ function SpiralLines({ mouseRef }) {
       for (let d = 0; d < numDiags; d++) {
         const offset = (d / numDiags) * (width + height);
         const animOffset = Math.sin(time + d * 0.7) * 30;
-        const opacity = 0.025 + Math.sin(time * 1.8 + d) * 0.015;
+        const opacity = 0.04 + Math.sin(time * 1.8 + d) * 0.02;
 
         ctx.beginPath();
         const diagStep = 12;
@@ -135,7 +135,7 @@ function SpiralLines({ mouseRef }) {
           if (t2 === 0) ctx.moveTo(p.x, p.y);
           else ctx.lineTo(p.x, p.y);
         }
-        ctx.strokeStyle = `rgba(107, 229, 190, ${opacity})`;
+        ctx.strokeStyle = `rgba(0, 215, 185, ${opacity})`;
         ctx.lineWidth = 0.5;
         ctx.stroke();
       }
@@ -143,32 +143,28 @@ function SpiralLines({ mouseRef }) {
       // ── CORNER BRACKETS ──
       const bracketSize = 60;
       const bracketWeight = 1;
-      const bracketOpacity = 0.12 + Math.sin(time * 2) * 0.04;
-      ctx.strokeStyle = `rgba(107, 229, 190, ${bracketOpacity})`;
+      const bracketOpacity = 0.22 + Math.sin(time * 2) * 0.06;
+      ctx.strokeStyle = `rgba(0, 215, 185, ${bracketOpacity})`;
       ctx.lineWidth = bracketWeight;
 
-      // Top-left
       ctx.beginPath();
       ctx.moveTo(20, 20 + bracketSize);
       ctx.lineTo(20, 20);
       ctx.lineTo(20 + bracketSize, 20);
       ctx.stroke();
 
-      // Top-right
       ctx.beginPath();
       ctx.moveTo(width - 20 - bracketSize, 20);
       ctx.lineTo(width - 20, 20);
       ctx.lineTo(width - 20, 20 + bracketSize);
       ctx.stroke();
 
-      // Bottom-left
       ctx.beginPath();
       ctx.moveTo(20, height - 20 - bracketSize);
       ctx.lineTo(20, height - 20);
       ctx.lineTo(20 + bracketSize, height - 20);
       ctx.stroke();
 
-      // Bottom-right
       ctx.beginPath();
       ctx.moveTo(width - 20 - bracketSize, height - 20);
       ctx.lineTo(width - 20, height - 20);
@@ -280,71 +276,64 @@ export default function Schedule() {
       onMouseLeave={handleMouseLeave}
     >
       <SpiralLines mouseRef={mouseRef} />
-      {/* Content wrapper */}
       <div className="relative z-10 max-w-6xl mx-auto px-6">
-      {/* Section heading */}
-      <div className={`text-center mb-16 transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <h2 className="text-4xl md:text-8xl font-bold text-white tracking-tight">
-          Event Schedule
-        </h2>
-        <p className="mt-4 text-[#6be5be]/60 text-lg max-w-xl mx-auto">
-          36 hours of hacking, workshops, and fun.
-        </p>
-        <div className="mt-4 mx-auto w-24 h-1 rounded-full bg-gradient-to-r from-[#6be5be] to-[#6be5be]/30" />
-      </div>
+        <div className={`text-center mb-16 transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h2 className="text-4xl md:text-6xl font-semibold text-white tracking-tight">
+            Event Schedule
+          </h2>
+          <p className="mt-4 text-[#fff] text-lg max-w-xl mx-auto">
+            36 hours of hacking, workshops, and fun.
+          </p>
+          <div className="mt-4 mx-auto w-24 h-1 rounded-full bg-gradient-to-r from-[#6be5be] to-[#6be5be]/30" />
+        </div>
 
-      {/* Day tabs */}
-      <div className={`flex justify-center gap-3 mb-12 flex-wrap transition-all duration-700 ease-out delay-200 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        {scheduleData.map((dayData, index) => (
-          <button
-            key={dayData.day}
-            onClick={() => setActiveDay(index)}
-            className={`px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide cursor-pointer border transition-all duration-300 ease-in-out ${activeDay === index ? 'bg-[#6be5be]/20 border-[#6be5be]/70 text-[#6be5be] shadow-[0_0_14px_rgba(107,229,190,0.3)]' : 'bg-transparent border-white/15 text-white/50 hover:border-white/30 hover:text-white/70'}`}
-          >
-            {dayData.day}
-          </button>
-        ))}
-      </div>
+        <div className={`flex justify-center gap-3 mb-12 flex-wrap transition-all duration-700 ease-out delay-200 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {scheduleData.map((dayData, index) => (
+            <button
+              key={dayData.day}
+              onClick={() => setActiveDay(index)}
+              className={`px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide cursor-pointer border transition-all duration-300 ease-in-out ${activeDay === index ? 'bg-[#6be5be]/20 border-[#6be5be]/70 text-[#6be5be] shadow-[0_0_14px_rgba(107,229,190,0.3)]' : 'bg-transparent border-white/15 text-white/50 hover:border-white/30 hover:text-white/70'}`}
+            >
+              {dayData.day}
+            </button>
+          ))}
+        </div>
 
-      {/* Timeline */}
-      <div className="relative">
-        {/* Vertical line */}
-        <div className={`absolute left-[22px] md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#6be5be]/40 via-[#6be5be]/20 to-transparent transition-all duration-1000 ease-out delay-300 origin-top ${visible ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} />
+        <div className="relative">
+          <div className={`absolute left-[22px] md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#6be5be]/40 via-[#6be5be]/20 to-transparent transition-all duration-1000 ease-out delay-300 origin-top ${visible ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`} />
 
-        <div className="space-y-8">
-          {scheduleData[activeDay].events.map((event, index) => {
-            const isLeft = index % 2 === 0;
-            const delay = 400 + index * 100;
-            return (
-              <div
-                key={`${activeDay}-${index}`}
-                className={`relative flex items-start gap-6 md:gap-0 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} transition-all duration-600 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-                style={{ transitionDelay: visible ? `${delay}ms` : '0ms' }}
-              >
-                {/* Dot on the timeline */}
-                <div className="absolute left-[18px] md:left-1/2 md:-translate-x-1/2 top-1 z-10">
-                  <div className="w-[10px] h-[10px] rounded-full bg-[#6be5be] shadow-[0_0_8px_rgba(107,229,190,0.6)]" />
-                </div>
+          <div className="space-y-8">
+            {scheduleData[activeDay].events.map((event, index) => {
+              const isLeft = index % 2 === 0;
+              const delay = 400 + index * 100;
+              return (
+                <div
+                  key={`${activeDay}-${index}`}
+                  className={`relative flex items-start gap-6 md:gap-0 ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} transition-all duration-600 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+                  style={{ transitionDelay: visible ? `${delay}ms` : '0ms' }}
+                >
+                  <div className="absolute left-[18px] md:left-1/2 md:-translate-x-1/2 top-1 z-10">
+                    <div className="w-[10px] h-[10px] rounded-full bg-[#6be5be] shadow-[0_0_8px_rgba(107,229,190,0.6)]" />
+                  </div>
 
-                {/* Card */}
-                <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${isLeft ? 'md:pr-4 md:text-right' : 'md:pl-4 md:text-left'} group`}>
-                  <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm transition-all duration-300 ease-in-out hover:bg-[#6be5be]/[0.05] hover:border-[#6be5be]/20 hover:shadow-[0_0_20px_rgba(107,229,190,0.08)]">
-                    <span className="inline-block px-3 py-1 mb-2 rounded-full text-xs font-semibold tracking-wider bg-[#6be5be]/10 text-[#6be5be] border border-[#6be5be]/20">
-                      {event.time}
-                    </span>
-                    <h3 className="text-white font-bold text-lg leading-snug">
-                      {event.title}
-                    </h3>
-                    <p className="mt-1 text-white/40 text-sm leading-relaxed">
-                      {event.description}
-                    </p>
+                  <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${isLeft ? 'md:pr-4 md:text-right' : 'md:pl-4 md:text-left'} group`}>
+                    <div className="p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm transition-all duration-300 ease-in-out hover:bg-[#6be5be]/[0.05] hover:border-[#6be5be]/20 hover:shadow-[0_0_20px_rgba(107,229,190,0.08)]">
+                      <span className="inline-block px-3 py-1 mb-2 rounded-full text-xs font-semibold tracking-wider bg-[#6be5be]/10 text-[#fff] border border-[#6be5be]/20">
+                        {event.time}
+                      </span>
+                      <h3 className="text-white text-lg leading-snug font-[family-name:var(--font-unbounded)]">
+                        {event.title}
+                      </h3>
+                      <p className="mt-1 text-white/40 text-sm leading-relaxed">
+                        {event.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
-      </div>
       </div>
     </section>
   );

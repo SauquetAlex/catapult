@@ -60,14 +60,13 @@ export default function SpiralBackground() {
 
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
       
-      // Bright green with subtle variation
       const brightness = 0.5 + spiralIndex * 0.3;
       const color = new THREE.Color(0x6be5be).multiplyScalar(brightness);
 
       const material = new THREE.LineBasicMaterial({
         color: color,
         transparent: true,
-        opacity: 0.35 - spiralIndex * 0.12, // Increased opacity
+        opacity: 0.35 - spiralIndex * 0.12,
         linewidth: 2,
       });
 
@@ -102,7 +101,7 @@ export default function SpiralBackground() {
       const material = new THREE.LineBasicMaterial({
         color: color,
         transparent: true,
-        opacity: 0.22, // Increased opacity
+        opacity: 0.22,
         linewidth: 2,
       });
 
@@ -137,7 +136,7 @@ export default function SpiralBackground() {
       animationFrameRef.current = requestAnimationFrame(animate);
       time += 0.005;
 
-      spiralGroup.rotation.z = time * 0.6;
+      spiralGroup.rotation.z = time * 2.2; // was 0.6 — ~3.5x faster
 
       const scale = 1 + Math.sin(time * 0.8) * 0.03;
       spiralGroup.scale.set(scale, scale, 1);
