@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
 
 export default function SpiralBackground() {
   const containerRef = useRef(null);
@@ -19,7 +19,7 @@ export default function SpiralBackground() {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      1000
+      1000,
     );
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -35,9 +35,9 @@ export default function SpiralBackground() {
 
     const spiralGroup = new THREE.Group();
     spiralGroup.position.x = 40;
-    
+
     const numSpirals = 12;
-    const maxRadius = 90;
+    const maxRadius = 45;
 
     for (let i = 0; i < numSpirals; i++) {
       const points = [];
@@ -59,7 +59,7 @@ export default function SpiralBackground() {
       }
 
       const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      
+
       const brightness = 0.5 + spiralIndex * 0.3;
       const color = new THREE.Color(0x6be5be).multiplyScalar(brightness);
 
@@ -124,10 +124,11 @@ export default function SpiralBackground() {
       mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
     };
 
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove);
 
     function updateCameraPosition() {
-      spiralGroup.position.x = 40 + (mouseX * 5 - spiralGroup.position.x + 40) * 0.05;
+      spiralGroup.position.x =
+        40 + (mouseX * 5 - spiralGroup.position.x + 40) * 0.05;
       spiralGroup.position.y += (mouseY * 5 - spiralGroup.position.y) * 0.05;
     }
 
@@ -153,22 +154,22 @@ export default function SpiralBackground() {
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      document.removeEventListener('mousemove', handleMouseMove);
-      
+      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("mousemove", handleMouseMove);
+
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-      
+
       if (containerRef.current && renderer.domElement) {
         containerRef.current.removeChild(renderer.domElement);
       }
-      
+
       renderer.dispose();
-      
+
       spiralGroup.children.forEach((child) => {
         if (child.geometry) child.geometry.dispose();
         if (child.material) child.material.dispose();
