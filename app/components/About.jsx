@@ -1,6 +1,7 @@
 import HorizontalLines from "./Lines";
 import PillBadge from "./Pill";
 import PrizeCategories from "./Categories";
+import PhotoGallery from "./PhotoGallery";
 
 export default function About() {
   return (
@@ -46,6 +47,9 @@ export default function About() {
             </p>
           </div>*/}
       </div>
+
+      {/* ——— Photo Gallery ——— */}
+      <PhotoGallery />
 
       {/* ——— Categories ——— */}
       <div className="mt-41 relative flex flex-col items-center justify-center max-w-4xl text-center z-10 w-full">
