@@ -13,7 +13,7 @@ export default function About() {
       >
         {/* ——— About banner ——— */}
         <div className="w-full py-8 px-6">
-          <p className="text-lg leading-tight text-center max-w-5xl mx-auto mt-18 text-white">
+          <p className="text-lg leading-tight text-center max-w-5xl mx-auto mt-15 text-white">
             Welcome to Catapult: a 36-hour <b>AI + ML × Entrepreneurship</b> hackathon
             hosted by ML@Purdue. Whether you're a designer, hacker, founder, or
             researcher, Catapult is your launchpad to create, build, and share
@@ -25,7 +25,7 @@ export default function About() {
 
       {/* ——— Logistics ——— */}
       <div className="relative flex flex-col items-center justify-center max-w-4xl text-center z-10 w-full mt-2 mb-15">
-        <div className="flex flex-row gap-10 items-center justify-center flex-wrap">
+        <div className="flex flex-row gap-10 items-center justify-center flex-wrap mb-3">
           <PillBadge text="April 3rd – 5th" width={360} height={140} />
           <PillBadge text="@ WALC" width={360} height={140} />
         </div>

@@ -178,9 +178,9 @@ export default function SpiralBackground() {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="absolute top-0 left-0 w-full h-full z-[1]"
-    />
-  );
+  <div className="absolute top-0 left-0 w-full h-full z-[1]">
+    <div ref={containerRef} className="absolute top-0 left-0 w-full h-full" />
+    <div className="absolute bottom-0 left-0 w-full h-[40%] bg-gradient-to-t from-[#151c43] to-transparent pointer-events-none" />
+  </div>
+);
 }
