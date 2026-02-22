@@ -6,9 +6,6 @@
     font-family: var(--font-raleway), sans-serif;
     }
 
-    * {
-    cursor: none;
-    }
 
     a, button, [role="button"], input, select, textarea, label {
     cursor: pointer;

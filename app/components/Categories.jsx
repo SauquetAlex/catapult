@@ -1,177 +1,226 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState, useRef, useCallback } from "react";
 
+import TrophyIcon from "../icons/trophy.svg";
+import RocketIcon from "../icons/rocket.svg";
+import BrainIcon from "../icons/brain.svg";
+import GlobeIcon from "../icons/globe.svg";
+import RobotIcon from "../icons/robot.svg";
+import DollarIcon from "../icons/dollar.svg";
+
+import Image from "next/image";
+
+// ─── Spotlight Card ───────────────────────────────────────────────
+function SpotlightCard({
+  children,
+  spotlightColor = "rgba(61,191,154,0.25)",
+  className = "",
+  style = {},
+  onMouseEnter,
+  onMouseLeave,
+}) {
+  const ref = useRef(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+
+  const handleMove = useCallback((e) => {
+    if (!ref.current) return;
+    const r = ref.current.getBoundingClientRect();
+    setPos({ x: e.clientX - r.left, y: e.clientY - r.top });
+  }, []);
+
+  const handleEnter = useCallback(
+    (e) => {
+      setOpacity(1);
+      onMouseEnter?.(e);
+    },
+    [onMouseEnter],
+  );
+
+  const handleLeave = useCallback(
+    (e) => {
+      setOpacity(0);
+      onMouseLeave?.(e);
+    },
+    [onMouseLeave],
+  );
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: "16px",
+        ...style,
+      }}
+      className={className}
+    >
+      {/* Spotlight glow layer */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          opacity,
+          transition: "opacity 0.35s ease",
+          background: `radial-gradient(circle 220px at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 100%)`,
+          zIndex: 1,
+        }}
+      />
+      {/* Border glow layer — follows the cursor along the edge */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          opacity,
+          transition: "opacity 0.35s ease",
+          borderRadius: "inherit",
+          background: `radial-gradient(circle 180px at ${pos.x}px ${pos.y}px, ${spotlightColor}, transparent 100%)`,
+          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+          maskComposite: "exclude",
+          WebkitMaskComposite: "xor",
+          padding: "1px",
+          zIndex: 3,
+        }}
+      />
+      <div style={{ position: "relative", zIndex: 2 }}>{children}</div>
+    </div>
+  );
+}
+
+// ─── Category data ────────────────────────────────────────────────
 const categories = [
   {
-    title: 'Overall\nWinner',
-    desc: 'Best across innovation, execution, and impact.',
-    blob: 'radial-gradient(ellipse at 50% 70%, rgba(61,191,154,0.6) 0%, rgba(80,160,255,0.2) 55%, transparent 75%)',
-    clip: 'polygon(0% 5%, 12% 0%, 100% 2%, 96% 82%, 85% 100%, 2% 94%)',
-    rotate: '-28deg',
+    title: "Overall Winner",
+    desc: "Awarded to the team with the most outstanding project, considering innovation, execution, and impact.",
+    Icon: TrophyIcon,
   },
   {
-    title: 'Best ML\nProject',
-    desc: 'Outstanding ML models and AI-driven intelligence.',
-    blob: 'radial-gradient(ellipse at 40% 65%, rgba(80,200,255,0.55) 0%, rgba(61,191,154,0.2) 55%, transparent 75%)',
-    clip: 'polygon(5% 0%, 98% 4%, 100% 78%, 90% 100%, 6% 96%, 0% 20%)',
-    rotate: '-16deg',
+    title: "Best ML Project",
+    desc: "Outstanding project built around a trained machine learning model.",
+    Icon: BrainIcon,
   },
   {
-    title: 'Most\nPromising\nStartup',
-    desc: 'Real market potential with a path to product.',
-    blob: 'radial-gradient(ellipse at 55% 60%, rgba(61,191,154,0.5) 0%, rgba(100,210,255,0.25) 55%, transparent 75%)',
-    clip: 'polygon(3% 8%, 88% 0%, 100% 90%, 80% 100%, 0% 97%, 2% 5%)',
-    rotate: '-5deg',
+    title: "Most Promising Startup",
+    desc: "Project with the strongest potential for real world impact, scalability, or business viability.",
+    Icon: RocketIcon,
   },
   {
-    title: 'Best Web\nAutomation',
-    desc: 'Agent workflows that eliminate friction.',
-    blob: 'radial-gradient(ellipse at 45% 70%, rgba(100,220,200,0.5) 0%, rgba(60,130,255,0.2) 55%, transparent 75%)',
-    clip: 'polygon(8% 0%, 100% 6%, 94% 92%, 76% 100%, 0% 88%, 4% 14%)',
-    rotate: '7deg',
+    title: "Best Automation",
+    desc: "Project that best streamlines a manual or repetitive process through clever automation.",
+    Icon: GlobeIcon,
   },
   {
-    title: 'Best Use\nof Hardware',
-    desc: 'Creative integration of physical systems.',
-    blob: 'radial-gradient(ellipse at 50% 65%, rgba(60,180,255,0.5) 0%, rgba(61,191,154,0.25) 55%, transparent 75%)',
-    clip: 'polygon(0% 4%, 82% 0%, 100% 84%, 94% 100%, 10% 98%, 3% 18%)',
-    rotate: '18deg',
+    title: "Best Use of Hardware",
+    desc: "Project that best incorporates AI with physical devices, robotics, sensors, or other hardware.",
+    Icon: RobotIcon,
   },
   {
-    title: 'Most\nPromising\nFinTech',
-    desc: 'Innovative solutions in finance and access.',
-    blob: 'radial-gradient(ellipse at 55% 65%, rgba(61,191,154,0.55) 0%, rgba(80,180,255,0.3) 50%, transparent 72%)',
-    clip: 'polygon(10% 0%, 100% 8%, 90% 100%, 70% 94%, 0% 100%, 5% 16%)',
-    rotate: '28deg',
+    title: "Most Promising FinTech",
+    desc: "Most innovative application of technology to solve a real problem in finance or payments.",
+    Icon: DollarIcon,
   },
 ];
 
+// ─── Main component ───────────────────────────────────────────────
 export default function PrizeCategories() {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <div style={{ width: '100%', padding: '48px 0', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
-      {/* Header */}
-
-
-      {/* Fan of cards */}
-      <div style={{
-        position: 'relative',
-        width: '96%',
-        maxWidth: '1400px',
-        height: '440px',
-      }}>
+    <div
+      style={{
+        width: "100%",
+        padding: "48px 24px",
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "46px",
+        // marginBottom: "340px"
+      }}
+    >
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gap: "30px",
+          width: "100%",
+          maxWidth: "95%",
+        }}
+      >
         {categories.map((cat, i) => {
           const isHovered = hovered === i;
-          const spreadPct = 2 + (i / (categories.length - 1)) * 78;
-
           return (
-            <div
+            <SpotlightCard
               key={i}
+              spotlightColor="rgba(61,191,154,0.22)"
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
               style={{
-                position: 'absolute',
-                left: `${spreadPct}%`,
-                bottom: '50px',
-                width: '230px',
-                height: '300px',
-                transformOrigin: 'bottom center',
-                transform: isHovered
-                  ? `rotate(0deg) scale(1.1) translateY(-32px)`
-                  : `rotate(${cat.rotate})`,
-                transition: 'transform 0.45s cubic-bezier(0.23, 1, 0.32, 1)',
-                zIndex: isHovered ? 20 : i + 1,
-                cursor: 'default',
+                padding: "32px",
+                background: "rgba(255,255,255,0.04)",
+                border: `1px solid ${isHovered ? "rgba(61,191,154,0.45)" : "rgba(255,255,255,0.08)"}`,
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
+                transition: "border-color 0.35s ease, background 0.35s ease",
+                cursor: "default",
               }}
             >
-              {/* Glass base */}
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'rgba(255,255,255,0.06)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-              }} />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  textAlign: "left",
+                }}
+              >
+                {/* Icon */}
+                <Image
+                  src={cat.Icon.src}
+                  width={42}
+                  height={42}
+                  alt=""
+                  style={{
+                    filter: isHovered
+                      ? "brightness(0) saturate(100%) invert(68%) sepia(52%) saturate(397%) hue-rotate(111deg) brightness(92%) contrast(89%)"
+                      : "brightness(0) invert(1)",
+                    transition: "filter 0.35s ease",
+                  }}
+                />
 
-              {/* Color blob */}
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                background: cat.blob,
-                opacity: isHovered ? 1 : 0.8,
-                transition: 'opacity 0.4s ease',
-              }} />
-
-              {/* Border */}
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                boxShadow: isHovered
-                  ? 'inset 0 0 0 1.5px rgba(255,255,255,0.55)'
-                  : 'inset 0 0 0 1px rgba(255,255,255,0.18)',
-                transition: 'box-shadow 0.4s ease',
-              }} />
-
-              {/* Top shimmer */}
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(160deg, rgba(255,255,255,0.12) 0%, transparent 50%)',
-                pointerEvents: 'none',
-              }} />
-
-              {/* Content */}
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                zIndex: 2,
-                padding: '28px 24px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-                gap: '10px',
-              }}>
-                <h3 style={{
-                  fontFamily: 'var(--font-unbounded), sans-serif',
-                  fontSize: '17px',
-                  fontWeight: 400,
-                  color: '#fff',
-                  margin: 0,
-                  lineHeight: 1.35,
-                  whiteSpace: 'pre-line',
-                  textShadow: '0 2px 10px rgba(0,0,0,0.5)',
-                }}>
+                {/* Title */}
+                <h3
+                  style={{
+                    fontFamily: "var(--font-unbounded), sans-serif",
+                    fontSize: "22px",
+                    fontWeight: 500,
+                    color: "#fff",
+                    lineHeight: 1.3,
+                    marginTop: "16px",
+                  }}
+                >
                   {cat.title}
                 </h3>
 
-                <p style={{
-                  fontFamily: 'var(--font-raleway), sans-serif',
-                  fontSize: '11px',
-                  fontWeight: 200,
-                  color: isHovered ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0)',
-                  margin: 0,
-                  lineHeight: 1.6,
-                  transition: 'color 0.3s ease',
-                }}>
+                {/* Description */}
+                <p
+                  style={{
+                    fontFamily: "var(--font-raleway), sans-serif",
+                    fontSize: "14px",
+                    fontWeight: 300,
+                    color: "rgba(255,255,255,0.5)",
+                    lineHeight: 1.6,
+                    marginTop: "8px",
+                  }}
+                >
                   {cat.desc}
                 </p>
               </div>
-
-              {/* Vertical line */}
-              <div style={{
-                position: 'absolute',
-                bottom: '-40px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '1px',
-                height: '36px',
-                background: isHovered ? 'rgba(61,191,154,0.9)' : 'rgba(255,255,255,0.2)',
-                transition: 'background 0.3s ease',
-              }} />
-            </div>
+            </SpotlightCard>
           );
         })}
       </div>

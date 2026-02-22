@@ -6,6 +6,7 @@ import About from "./components/About";
 import HorizontalLines from "./components/Lines";
 import SpiralToLines from "./components/MorphingSpiral";
 import Sponsors from "./components/Sponsor";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Schedule />
       <FAQ />
       <Sponsors />
+      <Footer />
     </div>
   );
 }

@@ -184,19 +184,19 @@ function SpiralLines({ mouseRef }) {
 
     draw();
 
-    const handleResize = () => {
-      width = canvas.parentElement.offsetWidth;
-      height = canvas.parentElement.offsetHeight;
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      ctx.scale(dpr, dpr);
-    };
-    window.addEventListener("resize", handleResize);
+    const ro = new ResizeObserver(() => {
+           width = canvas.parentElement.offsetWidth;
+           height = canvas.parentElement.offsetHeight;
+           canvas.width = width * dpr;
+           canvas.height = height * dpr;
+           ctx.scale(dpr, dpr);
+         });
+         ro.observe(canvas.parentElement);
 
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", handleResize);
-    };
+         return () => {
+           cancelAnimationFrame(animId);
+           ro.disconnect();
+         };
   }, [mouseRef]);
 
   return (
