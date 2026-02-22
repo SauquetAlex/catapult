@@ -166,7 +166,7 @@ const faqData = [
   {
     question: "Who can participate?",
     answer:
-      "Catapult is open to all college students regardless of major or experience level. You don't need any prior coding experience — we'll have workshops and mentors to help you get started.",
+      "Catapult is open to all college students regardless of major or experience level. You don't need any prior coding experience; we'll have workshops to help you get started.",
   },
   {
     question: "How much does it cost?",
@@ -175,11 +175,13 @@ const faqData = [
   },
   {
     question: "How does registration work?",
-    answer: "You can register through the Luma page. We accept registrations on a first-come first-serve basis according to the number of participants we can cater for. Registered participants MUST check in by 10:00PM on Friday to secure their food badge or it will be forfeited."
+    answer:
+      "You can register through the Luma page. We accept registrations on a first-come first-serve basis according to the number of participants we can cater for. Registered participants MUST check in by 10:00PM on Friday to secure their food badge or it will be forfeited to walk-ins.",
   },
   {
     question: "I wasn't accepted during registration. Can I still participate?",
-    answer: "Yes! Registration is mainly a limit on the number of students who will have a food badge since catering is our largest expense. Starting at 10:00PM on Friday, we will distribute any unclaimed food badges to unregistered participants on a first-come first-serve basis. Even if you are unable to secure a badge, you will still be permitted to submit a project."
+    answer:
+      "Yes! Registration is mainly a limit on the number of students who will have a food badge since catering is our largest expense. Starting at 10:00PM on Friday, we will distribute any unclaimed food badges to unregistered participants on a first-come first-serve basis. Even if you are unable to secure a badge, you will still be permitted to submit a project.",
   },
   {
     question: "Do I need a team?",
@@ -194,7 +196,7 @@ const faqData = [
   {
     question: "Where is it held?",
     answer:
-      "Catapult takes place at WALC. Check-in starts at 8:00 PM on Friday, April 3rd in BHEE 129.",
+      "Catapult takes place at WALC. Check-in starts at 8:00 PM on Friday, April 3rd in BHEE 129 but the remainder of the Hackathon will be held in WALC. Specific rooms and their purposes will be uploaded at a later date.",
   },
   {
     question: "What can I build?",
@@ -207,10 +209,23 @@ const faqData = [
       "Yes! We'll have prizes for overall winners as well as category-specific awards. Everyone who makes a genuine submission and attends our closing ceremony will also get a prize! Details will be announced at the opening ceremony.",
   },
   {
+    question: "How will judging work?",
+    answer:
+      "Juding will be in 2 rounds. The first round will consist of selecting the best 12 teams from their project videos on DevPost according to a strict rubric. They will then get the chance to present in a Shark Tank style pitch their project to the audience and judges.",
+  },
+  {
     question: "Can I still participate if I do not know any machine learning?",
     answer:
       "Yes! Although this hackathon is centered around it, we encourage you to use your other talents to make a project. We have awared prizes to projects that did not use any AI in the past. Furthermore, you can attend our workshops during the hackathon to get a good foundation for using certain tools along with attending our team making event.",
   },
+  {
+    question: "Will you provide compute for projects?",
+    answer: "Yes! We will be able to provide credits to use Modal GPUs and access to Purdue's RCAC clusters.",
+  },
+  {
+    question: "Can I attend virtually / remotely?",
+    answer: "Not really. You must be present in person to: 1) check-in and 2) for the second round of judging. However, you do not need to be physically present at WALC in-between.",
+  }
 ];
 
 function FaqItem({ question, answer, isOpen, onClick, index, visible }) {
