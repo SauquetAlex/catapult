@@ -42,7 +42,7 @@ export default function Sponsors() {
     >
       <RippleBackground />
 
-      <div className="relative z-10 w-full max-w-6xl px-6 py-12 md:py-28">
+      <div className="relative z-10 w-full max-w-6xl px-6 py-12 md:py-28 bg-[#6be5be] rounded-b-2xl">
         <div
           className="text-center mb-10 md:mb-20"
           style={{
@@ -69,7 +69,7 @@ export default function Sponsors() {
               href={sponsor.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center h-22 rounded-2xl bg-white/10 backdrop-blur-md border border-[#151c43]/15 text-[#151c43] font-semibold tracking-wide text-xl hover:scale-105 hover:bg-white/20 hover:shadow-[0_10px_40px_rgba(21,28,67,0.15)] transition-all duration-300"
+              className="flex items-center justify-center min-h-22 rounded-2xl bg-white/10 backdrop-blur-md border border-[#151c43]/15 text-[#151c43] font-semibold tracking-wide text-xl hover:scale-105 hover:bg-white/20 hover:shadow-[0_10px_40px_rgba(21,28,67,0.15)] transition-all duration-300"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? "translateY(0)" : "translateY(30px)",
