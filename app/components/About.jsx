@@ -4,21 +4,21 @@ import PrizeCategories from "./Categories";
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="relative min-h-[220vh] flex flex-col items-center justify-start bg-[#151c43] text-white"
-    >
-      {/* ——— About banner ——— */}
-      <div className="w-full bg-gradient-to-br from-[#6be5be] to-[#4a6fa5] py-8 px-6">
-        <p className="text-xl leading-relaxed text-center max-w-5xl mx-auto text-white">
-          Welcome to Catapult: a 36-hour AI + ML × Entrepreneurship hackathon
-          hosted by ML@Purdue. Whether you're a designer, hacker, founder, or
-          researcher, Catapult is your launchpad to create, build, and share
-          something extraordinary. No matter your experience level, this is your
-          chance to collaborate, experiment, and make it happen. Ready to take
-          the leap? Let's build something unforgettable.
-        </p>
-      </div>
+      <section
+        id="about"
+        className="relative min-h-screen flex flex-col items-center justify-start bg-[#151c43] text-white pb-[50vh]"
+      >
+        {/* ——— About banner ——— */}
+        <div className="w-full bg-gradient-to-br from-[#6be5be] to-[#4a6fa5] py-8 px-6">
+          <p className="text-xl leading-relaxed text-center max-w-5xl mx-auto text-white">
+            Welcome to Catapult: a 36-hour AI + ML × Entrepreneurship hackathon
+            hosted by ML@Purdue. Whether you're a designer, hacker, founder, or
+            researcher, Catapult is your launchpad to create, build, and share
+            something extraordinary. No matter your experience level, this is your
+            chance to collaborate, experiment, and make it happen. Ready to take
+            the leap? Let's build something unforgettable.
+          </p>
+        </div>
 
       {/* ——— Logistics ——— */}
       <div className="relative flex flex-col items-center justify-center max-w-4xl text-center z-10 w-full mt-16">

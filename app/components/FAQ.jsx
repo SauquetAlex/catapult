@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 
+import Image from "next/image";
+
 function CurvedLines() {
   const canvasRef = useRef(null);
 
@@ -159,7 +161,7 @@ const faqData = [
   {
     question: "What is Catapult?",
     answer:
-      "Catapult is a 44-hour hackathon where students come together to build innovative projects, attend workshops, and compete for prizes. Whether you're a beginner or experienced, there's something for everyone.",
+      "Catapult is a 36-hour hackathon where students come together to build innovative projects, attend workshops, and compete for prizes. Whether you're a beginner or experienced, there's something for everyone.",
   },
   {
     question: "Who can participate?",
@@ -170,6 +172,14 @@ const faqData = [
     question: "How much does it cost?",
     answer:
       "Nothing! Catapult is completely free to attend. We provide meals, snacks, swag, and everything you need for the weekend.",
+  },
+  {
+    question: "How does registration work?",
+    answer: "You can register through the Luma page. We accept registrations on a first-come first-serve basis according to the number of participants we can cater for. Registered participants MUST check in by 10:00PM on Friday to secure their food badge or it will be forfeited."
+  },
+  {
+    question: "I wasn't accepted during registration. Can I still participate?",
+    answer: "Yes! Registration is mainly a limit on the number of students who will have a food badge since catering is our largest expense. Starting at 10:00PM on Friday, we will distribute any unclaimed food badges to unregistered participants on a first-come first-serve basis. Even if you are unable to secure a badge, you will still be permitted to submit a project."
   },
   {
     question: "Do I need a team?",
@@ -194,10 +204,10 @@ const faqData = [
   {
     question: "Will there be prizes?",
     answer:
-      "Yes! We'll have prizes for overall winners as well as category-specific awards. Details will be announced at the opening ceremony.",
+      "Yes! We'll have prizes for overall winners as well as category-specific awards. Everyone who makes a genuine submission and attends our closing ceremony will also get a prize! Details will be announced at the opening ceremony.",
   },
   {
-    question: "Can I still apply if I do not know any machine learning?",
+    question: "Can I still participate if I do not know any machine learning?",
     answer:
       "Yes! Although this hackathon is centered around it, we encourage you to use your other talents to make a project. We have awared prizes to projects that did not use any AI in the past. Furthermore, you can attend our workshops during the hackathon to get a good foundation for using certain tools along with attending our team making event.",
   },
@@ -313,6 +323,42 @@ export default function FAQ() {
                   visible={visible}
                 />
               ))}
+            </div>
+          </div>
+          {/* Discord CTA */}
+          <div
+            className={`mt-12 transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+            style={{
+              transitionDelay: visible
+                ? `${150 + faqData.length * 100 + 200}ms`
+                : "0ms",
+            }}
+          >
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 rounded-2xl bg-[#151c43]/[0.06] backdrop-blur-sm px-6 py-5">
+              <div className="flex-1">
+                <p className="text-[#151c43] font-semibold text-lg">
+                  Still have questions?
+                </p>
+                <p className="text-[#151c43]/55 text-sm mt-1">
+                  Join our Discord server and ask us anything — we're happy to
+                  help.
+                </p>
+              </div>
+              <a
+                href="https://discord.gg/uPFHbPCJ9X"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#151c43] text-[#6be5be] font-semibold px-5 py-2.5 rounded-xl text-sm hover:bg-[#151c43]/90 transition-colors duration-200 shrink-0"
+              >
+                <Image
+                  src="/discord.svg"
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="w-5 h-5"
+                />
+                Join our Discord
+              </a>
             </div>
           </div>
         </div>
