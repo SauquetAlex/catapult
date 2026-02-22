@@ -6,7 +6,7 @@ export default function About() {
   return (
       <section
         id="about"
-        className="relative min-h-[220vh] flex flex-col items-center justify-start bg-[#151c43] text-white"
+        className="relative min-h-screen flex flex-col items-center justify-start bg-[#151c43] text-white pb-[50vh]"
       >
         {/* ——— About banner ——— */}
         <div className="w-full bg-gradient-to-br from-[#6be5be] to-[#4a6fa5] py-8 px-6">
