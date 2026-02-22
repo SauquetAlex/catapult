@@ -33,7 +33,7 @@ export default function Landing() {
                         animationData={catapultAnimation}
                         loop={false}
                         onComplete={handleComplete}
-                        style={{ width: 800 }}
+                        style={{ width: "min(800px, 90vw)" }}
                     />
                 )}
             </div>

@@ -38,13 +38,13 @@ export default function Sponsors() {
     <section
       ref={sectionRef}
       id="sponsors"
-      className="relative h-[100vh] overflow-hidden flex items-center justify-center"
+      className="relative min-h-screen overflow-hidden flex items-center justify-center"
     >
       <RippleBackground />
 
-      <div className="relative z-10 w-full max-w-6xl px-6 py-28">
+      <div className="relative z-10 w-full max-w-6xl px-6 py-12 md:py-28">
         <div
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-20"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? "translateY(0)" : "translateY(24px)",
@@ -62,7 +62,7 @@ export default function Sponsors() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 -mt-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-8 md:-mt-5">
           {sponsors.map((sponsor, i) => (
             <a
               key={sponsor.name}
@@ -92,7 +92,7 @@ export default function Sponsors() {
         </div>
 
         <div
-          className="mt-13 text-center"
+          className="mt-10 md:mt-13 text-center"
           style={{
             opacity: visible ? 1 : 0,
             transition: "opacity 0.8s ease 600ms",
