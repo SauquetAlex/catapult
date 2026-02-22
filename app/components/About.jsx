@@ -20,27 +20,40 @@ export default function About() {
           </p>
         </div>
 
-        {/* ——— Logistics ——— */}
-        <div className="relative flex flex-col items-center justify-center max-w-4xl text-center z-10 w-full mt-16">
-          <div className="flex flex-row gap-6 items-center justify-center flex-wrap">
-            <PillBadge text="April 3rd – 5th" width={360} height={140} />
-            <PillBadge text="@ WALC" width={360} height={140} />
-          </div>
-          {/* <div className="mt-16 relative flex flex-col items-center justify-center text-center z-10">
+      {/* ——— Logistics ——— */}
+      <div className="relative flex flex-col items-center justify-center max-w-4xl text-center z-10 w-full mt-16">
+        <div className="flex flex-row gap-6 items-center justify-center flex-wrap">
+          <PillBadge text="April 3rd – 5th" width={360} height={140} />
+          <a
+            href="https://luma.com/mp8bovsd?utm_source=embed"
+            style={{
+              backgroundColor: "rgba(255,255,255,0.06)",
+              color: "#6be5be",
+              padding: "10px 20px",
+              border: "none",
+              borderRadius: "14px",
+              cursor: "pointer",
+            }}
+          >
+            Apply now!
+          </a>
+          <PillBadge text="@ WALC" width={360} height={140} />
+        </div>
+        {/* <div className="mt-16 relative flex flex-col items-center justify-center text-center z-10">
             <p className="text-xl w-[80%] leading-tight">
               <b>4 – 6 people per team.</b> Guaranteed prize awarded to all valid
               submissions to be claimed at the closing ceremony!
             </p>
           </div>*/}
-        </div>
+      </div>
 
-        {/* ——— Categories ——— */}
-        <div className="mt-41 relative flex flex-col items-center justify-center max-w-4xl text-center z-10 w-full">
-          <h1 className="text-5xl -mb-17 font-semibold">Categories</h1>
-          <PrizeCategories />
-        </div>
+      {/* ——— Categories ——— */}
+      <div className="mt-41 relative flex flex-col items-center justify-center max-w-4xl text-center z-10 w-full">
+        <h1 className="text-5xl -mb-17 font-semibold">Categories</h1>
+        <PrizeCategories />
+      </div>
 
-        <HorizontalLines />
-      </section>
-    )
+      <HorizontalLines />
+    </section>
+  );
 }
