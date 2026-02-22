@@ -5,11 +5,18 @@ import Image from "next/image";
 import RippleBackground from "./Circles";
 
 const sponsors = [
-  { name: "Purdue Innovates", logo: "/purdueinnovates.png", url: "#" },
-  { name: "TE Connectivity", logo: "/tecon.webp", url: "#" },
-  { name: "Purdue CS", logo: null, url: "#" },
-  { name: "Jane Street", logo: "/janestreet.png", url: "#" },
-  { name: "Benevity", logo: "/ben.png", url: "#" },
+  { name: "Benevity", logo: "/Sponsors/ben.png", url: "https://benevity.com/" },
+  { name: "DataBricks", logo: "/Sponsors/databricks.svg", url: "https://www.databricks.com/" },
+  { name: "Jane Street", logo: "/Sponsors/janestreet.png", url: "https://www.janestreet.com/" },
+  { name: "Mad Mushroom", logo: "/Sponsors/Mad_Mushroom_Dark.png", url: "https://www.madmushroom.com/west-lafayette" },
+  { name: "Modal", logo: "/Sponsors/modal.png", url: "https://modal.com/" },
+  { name: "Purdue CS", logo: "/Sponsors/CompSci_H-Full-RGB.svg", url: "https://www.cs.purdue.edu/" },
+  { name: "Purdue Innovates", logo: "/Sponsors/purdueInnovates-Black-cropped.png", url: "https://purdueinnovates.org/" },
+  { name: "Purdue Rosen Center for Advanced Computing", logo: "/Sponsors/RCAC_H-Full-RGB_1.svg", url: "https://www.rcac.purdue.edu/" },
+  { name: "Ripple", logo: "/Sponsors/ripplelogo.svg", url: "https://www.cs.purdue.edu/" },
+  { name: "Snowflake", logo: "/Sponsors/snowflake.svg", url: "https://www.snowflake.com/" },
+  { name: "TE Connectivity", logo: "/Sponsors/tecon.webp", url: "https://www.te.com/" },
+  { name: "Wolfram", logo: "/Sponsors/wolfram.png", url: "https://www.wolfram.com/" },
 ];
 
 export default function Sponsors() {
@@ -48,10 +55,10 @@ export default function Sponsors() {
             className="text-5xl mt-3 md:text-6xl text-[#151c43] tracking-tight"
             style={{ fontFamily: "var(--font-unbounded), sans-serif" }}
           >
-            Sponsors
+            Sponsors & Partners
           </h2>
           <p className="mt-3 text-[#151c43]/60 max-w-md mx-auto">
-            Backed by teams who believe in builders.
+            Backed by teams who believe in builders and innovators.
           </p>
         </div>
 
