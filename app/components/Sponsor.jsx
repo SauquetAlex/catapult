@@ -13,7 +13,7 @@ const sponsors = [
   { name: "Purdue CS", logo: "/Sponsors/CompSci_H-Full-RGB.svg", url: "https://www.cs.purdue.edu/" },
   { name: "Purdue Innovates", logo: "/Sponsors/purdueInnovates-Black-cropped.png", url: "https://purdueinnovates.org/" },
   { name: "Purdue Rosen Center for Advanced Computing", logo: "/Sponsors/RCAC_H-Full-RGB_1.svg", url: "https://www.rcac.purdue.edu/" },
-  { name: "Ripple", logo: "/Sponsors/ripplelogo.svg", url: "https://www.cs.purdue.edu/" },
+  { name: "Ripple", logo: "/Sponsors/ripplelogo.svg", url: "https://ripple.com/" },
   { name: "Snowflake", logo: "/Sponsors/snowflake.svg", url: "https://www.snowflake.com/" },
   { name: "TE Connectivity", logo: "/Sponsors/tecon.webp", url: "https://www.te.com/" },
   { name: "Wolfram", logo: "/Sponsors/wolfram.png", url: "https://www.wolfram.com/" },
