@@ -51,7 +51,7 @@ export default function About() {
       <div className="relative z-10 w-full flex flex-col items-center justify-center pt-12 pb-4 px-6">
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
           <span
-            className="text-3xl sm:text-4xl md:text-5xl font-medium text-white whitespace-nowrap"
+            className="text-3xl sm:text-4xl md:text-5xl text-white whitespace-nowrap"
             style={{ fontFamily: "var(--font-unbounded), sans-serif" }}
           >
             Welcome to
@@ -81,9 +81,7 @@ export default function About() {
           </span>{" "}
           hackathon hosted by ML@Purdue. Whether you're a designer, hacker,
           founder, or researcher, Catapult is your launchpad to create, build,
-          and share something extraordinary. Ready
-          to take the leap?
-          <br />
+          and share something extraordinary. Ready to take the leap?{" "}
           <span className="text-[#6be5be]" style={{ fontFamily: "var(--font-unbounded), sans-serif" }}>
             Join us and build something unforgettable.
           </span>
@@ -91,17 +89,43 @@ export default function About() {
       </div>
 
       {/* ——— Logistics ——— */}
-      <div className="relative z-10 flex flex-col items-center justify-center max-w-4xl text-center w-full mt-2 mb-15">
-        <a
-          href="https://luma.com/mp8bovsd?utm_source=embed"
-          className="relative px-12 py-4 cursor-pointer backdrop-blur-md bg-[#6be5be]/25 border border-[#6be5be]/45 rounded-full transition-all duration-300 ease-out hover:bg-[#6be5be]/40 hover:border-[#6be5be]/65 hover:shadow-[0_8px_32px_rgba(107,229,190,0.25)] hover:-translate-y-0.5 active:translate-y-0 tracking-wide font-medium text-lg text-white no-underline mb-6"
-        >
-          Apply now
-        </a>
+      <div className="relative z-10 flex flex-col items-center justify-center max-w-4xl text-center w-full mt-2 mb-15 gap-10">
+
         <div className="flex flex-row gap-10 items-center justify-center flex-wrap">
           <PillBadge text="April 3rd – 5th" width={360} height={140} />
           <PillBadge text="@ WALC" width={360} height={140} />
         </div>
+
+        <div className="w-full flex flex-col items-center gap-6">
+          <p className="text-xs uppercase tracking-[0.3em] text-[#ffffff]/40" style={{ fontFamily: "var(--font-unbounded), sans-serif" }}>
+            At a Glance
+          </p>
+          <div className="flex gap-0 divide-x divide-[#6be5be]/20">
+            {[
+              { stat: "300+", label: "Attendees" },
+              { stat: "30+", label: "Ideas Launched" },
+              { stat: "25+", label: "Disciplines" },
+            ].map(({ stat, label }) => (
+              <div key={label} className="flex flex-col items-center gap-1 px-10">
+                <span
+                  className="text-4xl font-bold text-[#6be5be]"
+                  style={{ fontFamily: "var(--font-unbounded), sans-serif" }}
+                >
+                  {stat}
+                </span>
+                <span className="text-xs text-[#ffffff]/50 uppercase tracking-widest">
+                  {label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <a
+          href="https://luma.com/mp8bovsd?utm_source=embed"
+          className="relative px-40 py-4 cursor-pointer backdrop-blur-md bg-[#6be5be]/25 border border-[#6be5be]/45 rounded-full transition-all duration-300 ease-out hover:bg-[#6be5be]/40 hover:border-[#6be5be]/65 hover:shadow-[0_8px_32px_rgba(107,229,190,0.25)] hover:-translate-y-0.5 active:translate-y-0 tracking-wide font-medium text-lg text-white no-underline">
+          Register
+        </a>
       </div>
 
       {/* ——— Photo Gallery ——— */}
@@ -110,7 +134,7 @@ export default function About() {
       {/* ——— Categories ——— */}
       <div className="mt-25 relative z-10 flex flex-col items-center justify-center max-w-4xl text-center w-full">
         <h1
-          className="text-5xl -mb-17 font-semibold"
+          className="text-5xl -mb-17"
           style={{ fontFamily: "var(--font-unbounded), sans-serif" }}
         >
           Categories
@@ -119,6 +143,6 @@ export default function About() {
       </div>
 
       <HorizontalLines />
-    </section>
+    </section >
   );
 }
