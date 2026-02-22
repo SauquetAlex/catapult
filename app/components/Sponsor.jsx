@@ -38,7 +38,7 @@ export default function Sponsors() {
     <section
       ref={sectionRef}
       id="sponsors"
-      className="relative min-h-screen overflow-hidden flex items-center justify-center"
+      className="relative h-[100vh] overflow-hidden flex items-center justify-center"
     >
       <RippleBackground />
 
