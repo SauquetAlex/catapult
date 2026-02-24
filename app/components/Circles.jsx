@@ -11,13 +11,16 @@ export default function RippleBackground() {
     if (!containerRef.current) return;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    // renderer.setSize(window.innerWidth, window.innerHeight);
+    const { clientWidth: w, clientHeight: h } = containerRef.current;
+    renderer.setSize(w, h);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setClearColor(0x6be5be, 1); // mint teal — matches FAQ bg
     containerRef.current.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    const aspect = window.innerWidth / window.innerHeight;
+    // const aspect = window.innerWidth / window.innerHeight;
+    const aspect = w / h;
     const viewSize = 100;
     const camera = new THREE.OrthographicCamera(
       -viewSize * aspect, viewSize * aspect,
@@ -84,11 +87,12 @@ export default function RippleBackground() {
     animate();
 
     const onResize = () => {
-      const a = window.innerWidth / window.innerHeight;
+      const { clientWidth: w, clientHeight: h } = containerRef.current;
+      const a = w / h;
       camera.left   = -viewSize * a;
       camera.right  =  viewSize * a;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(w, h);
     };
     window.addEventListener('resize', onResize);
 
