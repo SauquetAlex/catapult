@@ -311,11 +311,6 @@ const scheduleData = [
           "Judges will start watching the videos you submitted. It's time for you to relax.",
       },
       {
-        time: "12:00 PM",
-        title: "Lunch",
-        description: "Eat while judges deliberate.",
-      },
-      {
         time: "1:00 PM",
         title: "Round 2: Shark Tank presentations",
         description:

@@ -211,12 +211,12 @@ const faqData = [
   {
     question: "How will judging work?",
     answer:
-      "Juding will be in 2 rounds. The first round will consist of selecting the best 12 teams from their project videos on DevPost according to a strict rubric. They will then get the chance to present in a Shark Tank style pitch their project to the audience and judges.",
+      "Judging will be in 2 rounds. The first round will consist of selecting the best 12 teams from their project videos on DevPost according to a strict rubric. They will then get the chance to present in a Shark Tank style their project to the audience and judges.",
   },
   {
     question: "Can I still participate if I do not know any machine learning?",
     answer:
-      "Yes! Although this hackathon is centered around it, we encourage you to use your other talents to make a project. We have awared prizes to projects that did not use any AI in the past. Furthermore, you can attend our workshops during the hackathon to get a good foundation for using certain tools along with attending our team making event.",
+      "Yes! Although this hackathon is centered around it, we encourage you to use your other talents to make a project. We have awarded prizes to projects that did not use any AI in the past. Furthermore, you can attend our workshops during the hackathon to get a good foundation for using certain tools along with attending our team making event.",
   },
   {
     question: "Will you provide compute for projects?",
