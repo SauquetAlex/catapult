@@ -7,7 +7,7 @@ import RocketIcon from "../icons/rocket.svg";
 import BrainIcon from "../icons/brain.svg";
 import GlobeIcon from "../icons/globe.svg";
 import RobotIcon from "../icons/robot.svg";
-import DollarIcon from "../icons/dollar.svg";
+import World from "../icons/world.svg";
 
 import Image from "next/image";
 
@@ -100,31 +100,37 @@ const categories = [
     title: "Overall Winner",
     desc: "Awarded to the team with the most outstanding project, considering innovation, execution, and impact.",
     Icon: TrophyIcon,
+    Prize: "MacBook Neo",
   },
   {
     title: "Best ML Project",
     desc: "Outstanding project built around a trained machine learning model.",
     Icon: BrainIcon,
+    Prize: "2000 GPU-Hours on RCAC H100-80GB",
   },
   {
     title: "Most Promising Startup",
     desc: "Project with the strongest potential for real world impact, scalability, or business viability.",
     Icon: RocketIcon,
+    Prize: "Bose SoundLink Micro Speaker",
   },
   {
     title: "Best Automation",
     desc: "Project that best streamlines a manual or repetitive process through clever automation.",
     Icon: GlobeIcon,
+    Prize: "Sony XM5 Headphones",
   },
   {
     title: "Best Use of Hardware",
     desc: "Project that best incorporates AI with physical devices, robotics, sensors, or other hardware.",
     Icon: RobotIcon,
+    Prize: "Raspberry Pi 5 kit",
   },
   {
-    title: "Most Promising FinTech",
-    desc: "Most innovative application of technology to solve a real problem in finance or payments.",
-    Icon: DollarIcon,
+    title: "Best Proof-of-Human Application",
+    desc: "Most creative application built with World's developper tools (World ID, MiniKit, or World Chain) that leverages proof-of-persoonhood.",
+    Icon: World,
+    Prize: "Ray-Ban Meta Gen 2",
   },
 ];
 
@@ -218,6 +224,19 @@ export default function PrizeCategories() {
                   }}
                 >
                   {cat.desc}
+                </p>
+
+                {/* Prize line */}
+                <p
+                  style={{
+                    fontFamily: "var(--font-raleway), sans-serif",
+                    fontSize: "16px",
+                    fontWeight: 500,
+                    color: "rgba(61,191,154,0.85)",
+                    marginTop: "12px",
+                  }}
+                >
+                  Prize: {cat.Prize}
                 </p>
               </div>
             </SpotlightCard>
