@@ -238,6 +238,11 @@ const scheduleData = [
           "Anyone not registered can check in and get unclaimed food badges.",
       },
       {
+        time: "10:30 PM",
+        title: "Workshop: RCAC Training",
+        description: "Workshop to train participants in using RCAC's GPUs.",
+      },
+      {
         time: "12:30 AM",
         title: "Midnight Pizza",
         description: "Fuel up with some midnight Pizza.",
@@ -254,7 +259,7 @@ const scheduleData = [
       },
       {
         time: "10:00 AM",
-        title: "Workshop",
+        title: "Workshop - Databricks",
         description: "To be announced...",
       },
       {
@@ -264,12 +269,12 @@ const scheduleData = [
       },
       {
         time: "2:00 PM",
-        title: "Workshop",
+        title: "Workshop - Snowflake",
         description: "To be announced...",
       },
       {
         time: "4:00 PM",
-        title: "Workshop",
+        title: "Workshop - Codex",
         description: "To be announced...",
       },
       {
