@@ -73,8 +73,9 @@ const sponsors = [
   },
   {
     name: "World",
-    logo: "/Sponsors/worldcoin-orb-world-logo.svg",
-    url: "https://world.org/"
+    logo: "/Sponsors/World2.png",
+    url: "https://world.org/",
+    logoClass: "max-h-20",
   },
 ];
 
@@ -141,7 +142,7 @@ export default function Sponsors() {
                   alt={sponsor.name}
                   width={200}
                   height={75}
-                  className="max-h-12 object-contain"
+                  className={`${sponsor.logoClass || "max-h-12"} object-contain`}
                 />
               ) : (
                 sponsor.name
