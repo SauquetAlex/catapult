@@ -65,8 +65,14 @@ export default function NavBar() {
           {navItems.map((item) => (
             <button
               key={item.section}
-              onClick={() => handleClick(item.section)}
-              className="px-6 py-2 text-sm font-medium text-white backdrop-blur-md bg-[#6be5be]/25 border border-[#6be5be]/45 rounded-full"
+              onClick={() => {
+                if (item.href) {
+                  window.open(item.href, "_blank");
+                } else {
+                  scrollToSection(item.section);
+                }
+                setOpen(false);
+              }}              className="px-6 py-2 text-sm font-medium text-white backdrop-blur-md bg-[#6be5be]/25 border border-[#6be5be]/45 rounded-full"
             >
               {item.label}
             </button>
