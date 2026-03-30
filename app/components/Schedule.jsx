@@ -219,7 +219,7 @@ const scheduleData = [
         rsvpLink: null,
       },
       {
-        time: "9:00 PM",
+        time: "9:15 PM",
         title: "Opening Ceremony",
         description: "Kickoff, rules, and schedule overview.",
         location: "BHEE 129",
@@ -237,7 +237,7 @@ const scheduleData = [
         title: "Team Building",
         description: "Find teammates and brainstorm ideas.",
         location: "WALC B093",
-        rsvpLink: "",
+        rsvpLink: null,
       },
       {
         time: "10:00 PM",
@@ -246,6 +246,13 @@ const scheduleData = [
           "Anyone not registered can check in and get unclaimed food badges.",
         location: "WALC B074",
         rsvpLink: null,
+      },
+      {
+        time: "11:00 PM",
+        title: "Workshop - RCAC",
+        description: "RCAC workshop to learn how to use the GPUs for your projects.",
+        location: "WALC 1055",
+        rsvpLink: "https://luma.com/p9gp62t8",
       },
       {
         time: "12:30 AM",
@@ -270,7 +277,7 @@ const scheduleData = [
         time: "10:00 AM",
         title: "Workshop - UWorld",
         description: "Workshop/Tech Talk by our sponsor UWorld",
-        location: "WALC B093",
+        location: "WALC 1055",
         rsvpLink: "https://luma.com/vce8xw5d",
       },
       {
@@ -284,14 +291,14 @@ const scheduleData = [
         time: "2:00 PM",
         title: "Workshop - Snowflake",
         description: "Workshop/Tech Talk by our sponsor Snowflake",
-        location: "WALC B093",
+        location: "WALC 1055",
         rsvpLink: "https://luma.com/72s6lwtn",
       },
       {
         time: "4:00 PM",
         title: "Workshop - Codex",
         description: "Workshop by our sponsor OpenAI",
-        location: "WALC B093",
+        location: "WALC 1055",
         rsvpLink: "https://luma.com/ofx5b5ji",
       },
       {
